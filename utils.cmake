@@ -44,8 +44,8 @@ endfunction()
 
 # EMSCRIPTEN related testing stuffs
 if (EMSCRIPTEN)
-  set(dom_test_dir ${CMAKE_BINARY_DIR}/tool/dom_test)
-  add_subdirectory(tool/dom_test)
+  set(quick_project_dom_test_dir ${CMAKE_CURRENT_LIST_DIR}/tool/dom_test)
+  add_subdirectory(${quick_project_dom_test_dir})
   set(QUICK_PROJECT_TEST_COMMAND "node")
 
   function(quick_project_add_dom_test name_)
@@ -62,11 +62,11 @@ if (EMSCRIPTEN)
     )
     add_test(
       NAME ${name}
-      COMMAND ${QUICK_PROJECT_TEST_COMMAND} ${dom_test_dir}/index.js ./${name}.js
+      COMMAND ${QUICK_PROJECT_TEST_COMMAND} ${quick_project_dom_test_dir}/index.js ./${name}.js
       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     )
     add_custom_target(run.${name}
-      COMMAND ${QUICK_PROJECT_TEST_COMMAND} ${dom_test_dir}/index.js ./${name}.js
+      COMMAND ${QUICK_PROJECT_TEST_COMMAND} ${quick_project_dom_test_dir}/index.js ./${name}.js
       DEPENDS ${name} tool.dom_test
       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
       COMMENT "Build and run test: ${name}"
