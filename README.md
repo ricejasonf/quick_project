@@ -1,7 +1,7 @@
 # QuickProject
 
 > Useful files and tools for boostrapping C++ projects.
-
+>
 > This project is a work in progress.
 
 ## Overview
